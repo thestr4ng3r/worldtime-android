@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primary">#ffa000</color>
+    <color name="primary_dark">#c67100</color>
+    <color name="accent">#64b5f6</color>
+
+    <color name="fab_tint">@android:color/white</color>
+
+    <color name="text_secondary">#9000</color>
+    <color name="text_secondary2">#5000</color>
+
+    <color name="seperator">#1000</color>
+</resources>

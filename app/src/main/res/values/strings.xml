@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">World Time</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="section_current_time">Current Time</string>
+
+    <string name="title_select_time_zones">Time Zones</string>
+
+    <string name="hours_delta">%s hours</string>
+</resources>
