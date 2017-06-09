@@ -4,13 +4,16 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.metallic.worldtime.model.CurrentTimeTimeZone
-import com.metallic.worldtime.model.CurrentTimeTimeZoneDao
+import com.metallic.worldtime.model.FavoriteTimeZone
+import com.metallic.worldtime.model.FavoriteTimeZoneDao
+import com.metallic.worldtime.model.Event
+import com.metallic.worldtime.model.EventDao
 
-@Database(entities = arrayOf(CurrentTimeTimeZone::class), version = 2)
+@Database(entities = arrayOf(FavoriteTimeZone::class, Event::class), version = 4)
 abstract class AppDatabase: RoomDatabase()
 {
-	abstract fun currentTimeTimeZoneDao(): CurrentTimeTimeZoneDao
+	abstract fun currentTimeTimeZoneDao(): FavoriteTimeZoneDao
+	abstract fun eventDao(): EventDao
 
 	companion object
 	{

@@ -26,6 +26,11 @@
             android:theme="@style/AppTheme"
             android:label="@string/title_select_time_zones"/>
 
+        <activity
+            android:name=".EditEventActivity"
+            android:theme="@style/AppTheme"
+            android:label="@string/title_edit_event"/>
+
     </application>
 
 </manifest>

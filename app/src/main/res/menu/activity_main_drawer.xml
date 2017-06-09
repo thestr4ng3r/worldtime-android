@@ -8,6 +8,10 @@
             android:id="@+id/nav_current_time"
             android:icon="@drawable/ic_menu_current_time"
             android:title="@string/section_current_time" />
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/ic_menu_event"
+            android:title="@string/section_events" />
     </group>
 
     <!--<item android:title="Communicate">

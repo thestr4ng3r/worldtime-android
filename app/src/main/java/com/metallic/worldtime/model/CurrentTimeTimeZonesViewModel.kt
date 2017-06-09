@@ -8,7 +8,7 @@ import com.metallic.worldtime.AppDatabase
 
 class CurrentTimeTimeZonesViewModel(application: Application) : AndroidViewModel(application)
 {
-	var timeZones: LiveData<List<CurrentTimeTimeZone>>? = null
+	var timeZones: LiveData<List<FavoriteTimeZone>>? = null
 
 	init
 	{

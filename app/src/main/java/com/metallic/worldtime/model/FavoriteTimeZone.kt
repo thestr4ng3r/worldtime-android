@@ -3,10 +3,10 @@ package com.metallic.worldtime.model
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
 
-const val tableName = "current_time_time_zone"
+private const val tableName = "favorite_time_zone"
 
 @Entity(tableName = tableName)
-class CurrentTimeTimeZone
+class FavoriteTimeZone
 {
 	@PrimaryKey
 	lateinit var timeZoneID: String
@@ -16,16 +16,16 @@ class CurrentTimeTimeZone
 }
 
 @Dao
-interface CurrentTimeTimeZoneDao
+interface FavoriteTimeZoneDao
 {
 	@Query("SELECT * FROM $tableName")
-	fun getAll(): LiveData<List<CurrentTimeTimeZone>>
+	fun getAll(): LiveData<List<FavoriteTimeZone>>
 
 	@Insert
-	fun insert(o: CurrentTimeTimeZone)
+	fun insert(o: FavoriteTimeZone)
 
 	@Delete
-	fun delete(o: CurrentTimeTimeZone)
+	fun delete(o: FavoriteTimeZone)
 
 	@Query("DELETE FROM $tableName WHERE timeZoneId = :arg0")
 	fun deleteByTimeZoneID(id: String)

@@ -10,4 +10,62 @@
     <color name="text_secondary2">#5000</color>
 
     <color name="seperator">#1000</color>
+
+    <color name="material_red_800">#C62828</color>
+    <color name="material_pink_800">#AD1457</color>
+    <color name="material_purple_800">#6A1B9A</color>
+    <color name="material_deep_purple_800">#4527A0</color>
+    <color name="material_indigo_800">#283593</color>
+    <color name="material_blue_800">#1565C0</color>
+    <color name="material_light_blue_800">#0277BD</color>
+    <color name="material_cyan_800">#00838F</color>
+    <color name="material_teal_800">#00695C</color>
+    <color name="material_green_800">#2E7D32</color>
+    <color name="material_light_green_800">#558B2F</color>
+    <color name="material_lime_800">#9E9D24</color>
+    <color name="material_yellow_800">#F9A825</color>
+    <color name="material_amber_800">#FF8F00</color>
+    <color name="material_orange_800">#EF6C00</color>
+    <color name="material_deep_orange_800">#EF6C00</color>
+
+    <color name="time_zone_text_light">@android:color/white</color>
+    <color name="time_zone_text_dark">@android:color/black</color>
+
+    <array name="time_zone_colors">
+        <item>@color/material_red_800</item>
+        <item>@color/material_pink_800</item>
+        <item>@color/material_purple_800</item>
+        <item>@color/material_deep_purple_800</item>
+        <item>@color/material_indigo_800</item>
+        <item>@color/material_blue_800</item>
+        <item>@color/material_light_blue_800</item>
+        <item>@color/material_cyan_800</item>
+        <item>@color/material_teal_800</item>
+        <item>@color/material_green_800</item>
+        <item>@color/material_light_green_800</item>
+        <item>@color/material_lime_800</item>
+        <item>@color/material_yellow_800</item>
+        <item>@color/material_amber_800</item>
+        <item>@color/material_orange_800</item>
+        <item>@color/material_deep_orange_800</item>
+    </array>
+
+    <array name="time_zone_colors_text">
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_dark</item>
+        <item>@color/time_zone_text_dark</item>
+        <item>@color/time_zone_text_dark</item>
+        <item>@color/time_zone_text_light</item>
+        <item>@color/time_zone_text_light</item>
+    </array>
 </resources>

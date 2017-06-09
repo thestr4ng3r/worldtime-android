@@ -5,14 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
-import com.metallic.worldtime.model.CurrentTimeTimeZone
+import com.metallic.worldtime.model.FavoriteTimeZone
 import kotlinx.android.synthetic.main.item_current_time_time_zone.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeTimeZonesRecyclerViewAdapter.ViewHolder>()
 {
-	var timeZones: List<CurrentTimeTimeZone>? = null
+	var timeZones: List<FavoriteTimeZone>? = null
 		set(value)
 		{
 			field = value

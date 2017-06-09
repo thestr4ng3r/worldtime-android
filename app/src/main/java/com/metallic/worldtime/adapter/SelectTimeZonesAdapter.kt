@@ -1,13 +1,12 @@
 package com.metallic.worldtime.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import com.metallic.worldtime.AppDatabase
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
-import com.metallic.worldtime.model.CurrentTimeTimeZone
+import com.metallic.worldtime.model.FavoriteTimeZone
 import kotlinx.android.synthetic.main.item_select_time_zone.view.*
 import java.util.*
 
@@ -31,7 +30,7 @@ class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHo
 	{
 		val timeZone = allTimeZones?.get(position) ?: return
 
-		viewHolder.checkBox.text = timeZone.displayName
+		viewHolder.checkBox.text = timeZone.id //timeZone.displayName
 		viewHolder.checkBox.setOnCheckedChangeListener(null)
 		viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone.id) ?: false
 		viewHolder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -42,7 +41,7 @@ class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHo
 			}
 			else
 			{
-				val tz = CurrentTimeTimeZone()
+				val tz = FavoriteTimeZone()
 				tz.timeZoneID = timeZone.id
 				tz.sort = -1
 				dao.insert(tz)

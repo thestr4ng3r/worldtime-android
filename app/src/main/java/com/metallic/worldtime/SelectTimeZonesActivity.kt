@@ -1,12 +1,11 @@
 package com.metallic.worldtime
 
-import android.arch.lifecycle.LifecycleActivity
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
+import android.view.MenuItem
 import com.metallic.worldtime.adapter.SelectTimeZonesAdapter
-import com.metallic.worldtime.model.CurrentTimeTimeZone
+import com.metallic.worldtime.model.FavoriteTimeZone
 import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
 import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_time_zones.*
@@ -30,8 +29,8 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity()
 		recycler_view.adapter = adapter
 
 		viewModel = ViewModelProviders.of(this).get(CurrentTimeTimeZonesViewModel::class.java)
-		var observer: Observer<List<CurrentTimeTimeZone>>? = null
-		observer = Observer<List<CurrentTimeTimeZone>> { items ->
+		var observer: Observer<List<FavoriteTimeZone>>? = null
+		observer = Observer<List<FavoriteTimeZone>> { items ->
 			val selectedIds = HashSet(items?.map { a -> a.timeZoneID } )
 			adapter.selectedTimeZones = selectedIds
 			adapter.notifyDataSetChanged()
@@ -40,8 +39,21 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity()
 		viewModel.timeZones?.observe(this, observer)
 
 		val timeZones = TimeZone.getAvailableIDs()
+				.sorted()
 				.map { id -> TimeZone.getTimeZone(id) }
-				.sortedBy { timeZone -> timeZone.displayName }
 		adapter.allTimeZones = timeZones
+	}
+
+	override fun onOptionsItemSelected(item: MenuItem): Boolean
+	{
+		when(item.itemId)
+		{
+			android.R.id.home ->
+			{
+				onBackPressed()
+				return true
+			}
+		}
+		return super.onOptionsItemSelected(item)
 	}
 }
