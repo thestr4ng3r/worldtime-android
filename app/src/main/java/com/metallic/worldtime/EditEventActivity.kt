@@ -1,11 +1,14 @@
 package com.metallic.worldtime
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import com.metallic.worldtime.model.Event
 import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit_event.*
+import org.joda.time.Instant
 import java.time.ZoneId
 import java.time.ZonedDateTime
 
@@ -35,7 +38,23 @@ class EditEventActivity: LifecycleAppCompatActivity()
 		{
 			event = Event()
 			newEvent = true
+
+			event.date = Instant.now().millis
+			event.timeZoneId = "UTC"
+			event.title = ""
 		}
+
+		event_title_edit_text.setText(event.title)
+		event_title_edit_text.addTextChangedListener(object : TextWatcher {
+			override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+			override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+			override fun afterTextChanged(s: Editable)
+			{
+				event.title = s.toString()
+			}
+		})
+
+		time_zone_text_view.text = event.timeZoneId
 
 		time_zone_row.setOnClickListener {
 
@@ -60,12 +79,20 @@ class EditEventActivity: LifecycleAppCompatActivity()
 
 			R.id.action_save ->
 			{
-				onBackPressed()
+				save()
 				return true
 			}
 		}
 		return super.onOptionsItemSelected(item)
 	}
 
-
+	private fun save()
+	{
+		val dao = AppDatabase.getInstance(this).eventDao()
+		if(newEvent)
+			dao.insert(event)
+		else
+			dao.update(event)
+		finish()
+	}
 }

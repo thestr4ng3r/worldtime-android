@@ -18,14 +18,16 @@ import com.metallic.worldtime.MainActivity
 import com.metallic.worldtime.R
 import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
+import com.metallic.worldtime.adapter.EventsRecyclerViewAdapter
 import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
+import com.metallic.worldtime.model.EventsViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
 
 class EventsFragment: LifecycleFragment()
 {
-	private var viewModel: CurrentTimeTimeZonesViewModel? = null
+	private var viewModel: EventsViewModel? = null
 
-	private val adapter = CurrentTimeTimeZonesRecyclerViewAdapter()
+	private val adapter = EventsRecyclerViewAdapter()
 	private lateinit var drawerToggle: ActionBarDrawerToggle
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
@@ -61,34 +63,7 @@ class EventsFragment: LifecycleFragment()
 	override fun onActivityCreated(savedInstanceState: Bundle?)
 	{
 		super.onActivityCreated(savedInstanceState)
-		viewModel = ViewModelProviders.of(this).get(CurrentTimeTimeZonesViewModel::class.java)
-		viewModel?.timeZones?.observe(this, Observer { items -> adapter.timeZones = items; })
-	}
-
-	override fun onResume()
-	{
-		super.onResume()
-		updateTime()
-		activity.registerReceiver(timeBroadcastReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
-	}
-
-	override fun onPause()
-	{
-		super.onPause()
-		activity.unregisterReceiver(timeBroadcastReceiver)
-	}
-
-	private fun updateTime()
-	{
-		adapter.notifyDataSetChanged()
-	}
-
-	val timeBroadcastReceiver = TimeBroadcastReceiver()
-	inner class TimeBroadcastReceiver : BroadcastReceiver()
-	{
-		override fun onReceive(context: Context, intent: Intent)
-		{
-			view?.post { updateTime() }
-		}
+		viewModel = ViewModelProviders.of(this).get(EventsViewModel::class.java)
+		viewModel?.events?.observe(this, Observer { items -> adapter.events = items; })
 	}
 }

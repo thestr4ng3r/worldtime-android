@@ -34,6 +34,9 @@ interface EventDao
 	@Insert
 	fun insert(o: Event)
 
+	@Update
+	fun update(o: Event)
+
 	@Delete
 	fun delete(o: Event)
 }
