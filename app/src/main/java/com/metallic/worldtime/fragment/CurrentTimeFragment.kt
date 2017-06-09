@@ -18,11 +18,12 @@ import com.metallic.worldtime.MainActivity
 import com.metallic.worldtime.R
 import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
+import com.metallic.worldtime.dateFormatTime
 import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.*
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
-import java.text.SimpleDateFormat
-import java.util.*
+import org.joda.time.LocalDate
+import org.joda.time.LocalDateTime
 
 class CurrentTimeFragment: LifecycleFragment()
 {
@@ -87,8 +88,7 @@ class CurrentTimeFragment: LifecycleFragment()
 
 	private fun updateTime()
 	{
-		val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-		val title = dateFormat.format(Date())
+		val title = dateFormatTime.print(LocalDateTime.now())
 		timeTextView.text = title
 		adapter.notifyDataSetChanged()
 	}

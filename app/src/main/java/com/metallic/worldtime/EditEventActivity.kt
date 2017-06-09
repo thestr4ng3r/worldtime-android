@@ -6,6 +6,8 @@ import android.view.MenuItem
 import com.metallic.worldtime.model.Event
 import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit_event.*
+import java.time.ZoneId
+import java.time.ZonedDateTime
 
 class EditEventActivity: LifecycleAppCompatActivity()
 {

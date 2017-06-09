@@ -9,8 +9,7 @@ import com.metallic.worldtime.model.FavoriteTimeZone
 import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
 import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_time_zones.*
-import java.util.*
-import kotlin.collections.HashSet
+import org.joda.time.DateTimeZone
 
 class SelectTimeZonesActivity: LifecycleAppCompatActivity()
 {
@@ -31,16 +30,16 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity()
 		viewModel = ViewModelProviders.of(this).get(CurrentTimeTimeZonesViewModel::class.java)
 		var observer: Observer<List<FavoriteTimeZone>>? = null
 		observer = Observer<List<FavoriteTimeZone>> { items ->
-			val selectedIds = HashSet(items?.map { a -> a.timeZoneID } )
+			val selectedIds = items?.map { a -> a.timeZoneID }?.toSet()
 			adapter.selectedTimeZones = selectedIds
 			adapter.notifyDataSetChanged()
 			viewModel.timeZones?.removeObserver(observer)
 		}
 		viewModel.timeZones?.observe(this, observer)
 
-		val timeZones = TimeZone.getAvailableIDs()
+		val timeZones = DateTimeZone.getAvailableIDs()
 				.sorted()
-				.map { id -> TimeZone.getTimeZone(id) }
+				.map { id -> DateTimeZone.forID(id) }
 		adapter.allTimeZones = timeZones
 	}
 

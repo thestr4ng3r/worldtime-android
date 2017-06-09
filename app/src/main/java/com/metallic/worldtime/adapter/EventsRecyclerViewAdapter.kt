@@ -5,10 +5,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
+import com.metallic.worldtime.dateFormatTime
 import com.metallic.worldtime.model.Event
 import kotlinx.android.synthetic.main.item_event.view.*
+import org.joda.time.DateTimeZone
+import org.joda.time.Instant
+import org.joda.time.LocalDate
+import org.joda.time.LocalDateTime
 import java.text.SimpleDateFormat
-import java.util.*
 
 class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.ViewHolder>()
 {
@@ -34,16 +38,14 @@ class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.
 	{
 		val event = events?.get(position) ?: return
 
-		val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+		viewHolder.nameTextView.text = DateTimeZone.getDefault().id
+		val localTime = LocalDateTime(event.date, DateTimeZone.getDefault())
+		viewHolder.timeTextView.text = dateFormatTime.print(localTime)
 
-		viewHolder.nameTextView.text = TimeZone.getDefault().id
-		format.timeZone = TimeZone.getDefault()
-		viewHolder.timeTextView.text = format.format(Date(event.date))
-
-		val timeZone = TimeZone.getTimeZone(event.timeZoneId)
+		val timeZone = DateTimeZone.forID(event.timeZoneId)
 		viewHolder.name2TextView.text = timeZone.id
-		format.timeZone = timeZone
-		viewHolder.time2TextView.text = format.format(Date(event.date))
+		val remoteTime = LocalDateTime(event.date, timeZone)
+		viewHolder.time2TextView.text = dateFormatTime.print(remoteTime)
 
 		viewHolder.eventTitleTextView.text = event.title
 	}

@@ -8,11 +8,11 @@ import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
 import com.metallic.worldtime.model.FavoriteTimeZone
 import kotlinx.android.synthetic.main.item_select_time_zone.view.*
-import java.util.*
+import org.joda.time.DateTimeZone
 
 class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>()
 {
-	var allTimeZones: List<TimeZone>? = null
+	var allTimeZones: List<DateTimeZone>? = null
 	var selectedTimeZones: Set<String>? = null
 
 	override fun getItemCount(): Int

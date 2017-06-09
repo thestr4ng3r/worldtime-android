@@ -20,8 +20,6 @@ import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
 import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EventsFragment: LifecycleFragment()
 {
