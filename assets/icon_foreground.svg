@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="108"
+   viewBox="0 0 108 108"
+   width="108"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="icon_foreground.svg"
+   style="fill:#ffffff"
+   inkscape:export-filename="/home/florian/dev/worldtime/assets/icon_foreground.png"
+   inkscape:export-xdpi="853.33002"
+   inkscape:export-ydpi="853.33002">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs12">
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Blur"
+       id="filter4220">
+      <feGaussianBlur
+         stdDeviation="1 1"
+         result="blur"
+         id="feGaussianBlur4222" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffac03"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1026"
+     id="namedview10"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="4.9166667"
+     inkscape:cx="52.677626"
+     inkscape:cy="40.657163"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2">
+    <sodipodi:guide
+       position="18,90"
+       orientation="1,0"
+       id="guide4147"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="18,18"
+       orientation="0,1"
+       id="guide4149"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="18,90"
+       orientation="0,1"
+       id="guide4151"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+    <sodipodi:guide
+       position="90,18"
+       orientation="1,0"
+       id="guide4155"
+       inkscape:label=""
+       inkscape:color="rgb(0,0,255)" />
+  </sodipodi:namedview>
+  <g
+     transform="matrix(2.5100924,0,0,2.5100924,23.878891,23.878891)"
+     id="g4176"
+     style="filter:url(#filter4220)">
+    <path
+       inkscape:connector-curvature="0"
+       d="M 11.99,2 C 6.47,2 2,6.48 2,12 2,17.52 6.47,22 11.99,22 17.52,22 22,17.52 22,12 22,6.48 17.52,2 11.99,2 Z M 12,20 C 7.58,20 4,16.42 4,12 4,7.58 7.58,4 12,4 c 4.42,0 8,3.58 8,8 0,4.42 -3.58,8 -8,8 z"
+       id="path4178"
+       style="fill:#bf360c;fill-opacity:0.2" />
+    <path
+       style="fill:none"
+       inkscape:connector-curvature="0"
+       d="M 0,0 24,0 24,24 0,24 Z"
+       id="path4180" />
+    <path
+       inkscape:connector-curvature="0"
+       d="M 12.5,7 11,7 11,13 16.25,16.15 17,14.92 12.5,12.25 Z"
+       id="path4182"
+       style="fill:#bf360c;fill-opacity:0.2" />
+  </g>
+  <g
+     id="g4142"
+     transform="matrix(2.5100924,0,0,2.5100924,23.878891,23.878891)">
+    <path
+       id="path4"
+       d="M 11.99,2 C 6.47,2 2,6.48 2,12 2,17.52 6.47,22 11.99,22 17.52,22 22,17.52 22,12 22,6.48 17.52,2 11.99,2 Z M 12,20 C 7.58,20 4,16.42 4,12 4,7.58 7.58,4 12,4 c 4.42,0 8,3.58 8,8 0,4.42 -3.58,8 -8,8 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path6"
+       d="M 0,0 24,0 24,24 0,24 Z"
+       inkscape:connector-curvature="0"
+       style="fill:none" />
+    <path
+       id="path8"
+       d="M 12.5,7 11,7 11,13 16.25,16.15 17,14.92 12.5,12.25 Z"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

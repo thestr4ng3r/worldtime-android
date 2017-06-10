@@ -29,8 +29,6 @@ class CurrentTimeFragment: LifecycleFragment()
 	private val adapter = CurrentTimeTimeZonesRecyclerViewAdapter()
 	private lateinit var drawerToggle: ActionBarDrawerToggle
 
-	private lateinit var timeTextView: TextView
-
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
 	{
 		super.onCreateView(inflater, container, savedInstanceState)
@@ -45,8 +43,6 @@ class CurrentTimeFragment: LifecycleFragment()
 		mainActivity.title = getString(R.string.section_current_time)
 
 		view.recycler_view.adapter = adapter
-
-		timeTextView = view.time_text_view
 
 		view.fab.setOnClickListener {
 			val intent = Intent(activity, SelectTimeZonesActivity::class.java)
@@ -86,8 +82,6 @@ class CurrentTimeFragment: LifecycleFragment()
 
 	private fun updateTime()
 	{
-		val title = DATE_FORMAT_TIME.print(LocalDateTime.now())
-		timeTextView.text = title
 		adapter.notifyDataSetChanged()
 	}
 

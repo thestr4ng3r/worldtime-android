@@ -18,4 +18,10 @@
 
     <string name="action_save_title">Save</string>
     <string name="action_search_title">Search</string>
+
+    <string name="message_question_delete_event">Delete %s?</string>
+    <string name="message_question_delete_favorite_timezone">Remove %s?</string>
+
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
 </resources>

@@ -12,7 +12,7 @@ import com.metallic.worldtime.model.EventDao
 @Database(entities = arrayOf(FavoriteTimeZone::class, Event::class), version = 5)
 abstract class AppDatabase: RoomDatabase()
 {
-	abstract fun currentTimeTimeZoneDao(): FavoriteTimeZoneDao
+	abstract fun favoriteTimeZoneDao(): FavoriteTimeZoneDao
 	abstract fun eventDao(): EventDao
 
 	companion object

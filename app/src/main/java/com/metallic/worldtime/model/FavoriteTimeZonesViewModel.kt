@@ -12,6 +12,6 @@ class FavoriteTimeZonesViewModel(application: Application) : AndroidViewModel(ap
 
 	init
 	{
-		timeZones = AppDatabase.getInstance(application).currentTimeTimeZoneDao().getAll()
+		timeZones = AppDatabase.getInstance(application).favoriteTimeZoneDao().getAll()
 	}
 }

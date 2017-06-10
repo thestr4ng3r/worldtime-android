@@ -47,7 +47,7 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 			viewHolder.checkBox.setOnCheckedChangeListener(null)
 			viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone.id) ?: false
 			viewHolder.checkBox.setOnCheckedChangeListener { _, isChecked ->
-				val dao = AppDatabase.getInstance(viewHolder.checkBox.context).currentTimeTimeZoneDao()
+				val dao = AppDatabase.getInstance(viewHolder.checkBox.context).favoriteTimeZoneDao()
 				if(!isChecked)
 				{
 					dao.deleteByTimeZoneID(timeZone.id)

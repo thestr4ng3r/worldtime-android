@@ -1,8 +1,11 @@
 package com.metallic.worldtime.adapter
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.metallic.worldtime.AppDatabase
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
 import com.metallic.worldtime.DATE_FORMAT_TIME
@@ -46,6 +49,20 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		val offsetHours = timeZoneOffset.toDouble() / (1000.0 * 60.0 * 60.0)
 		viewHolder.infoTextView.text = viewHolder.infoTextView.context.getString(R.string.hours_delta)
 				.format(DECIMAL_FORMAT_OFFSET.format(offsetHours))
+
+		viewHolder.itemLayout.setOnLongClickListener {
+			val context = viewHolder.itemLayout.context
+			AlertDialog.Builder(context)
+					.setMessage(context.getString(R.string.message_question_delete_event).format(timeZone.id))
+					.setNegativeButton(R.string.action_cancel, { _: DialogInterface, _: Int -> })
+					.setPositiveButton(R.string.action_delete, { _: DialogInterface, _: Int ->
+						val dao = AppDatabase.getInstance(context).favoriteTimeZoneDao()
+						dao.delete(favoriteTimeZone)
+					})
+					.create()
+					.show()
+			true
+		}
 	}
 
 	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
@@ -53,5 +70,6 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		val nameTextView = itemView.name_text_view!!
 		val timeTextView = itemView.time_text_view!!
 		val infoTextView = itemView.info_text_view!!
+		val itemLayout = itemView.item_layout!!
 	}
 }

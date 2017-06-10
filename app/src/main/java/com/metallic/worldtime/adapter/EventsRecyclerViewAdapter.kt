@@ -1,15 +1,14 @@
 package com.metallic.worldtime.adapter
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import com.metallic.worldtime.*
 import com.metallic.worldtime.utils.inflate
-import com.metallic.worldtime.R
-import com.metallic.worldtime.DATE_FORMAT_TIME
-import com.metallic.worldtime.EditEventActivity
-import com.metallic.worldtime.colorsForTimeZone
 import com.metallic.worldtime.model.Event
 import kotlinx.android.synthetic.main.item_event.view.*
 import org.joda.time.DateTimeZone
@@ -63,6 +62,20 @@ class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.
 			val intent = Intent(context, EditEventActivity::class.java)
 			intent.putExtra(EditEventActivity.EVENT_ID_EXTRA, event.id)
 			context.startActivity(intent)
+		}
+
+		viewHolder.itemLayout.setOnLongClickListener {
+			val context = viewHolder.itemLayout.context
+			AlertDialog.Builder(context)
+					.setMessage(context.getString(R.string.message_question_delete_event).format(event.title))
+					.setNegativeButton(R.string.action_cancel, { _: DialogInterface, _: Int -> })
+					.setPositiveButton(R.string.action_delete, { _: DialogInterface, _: Int ->
+						val dao = AppDatabase.getInstance(context).eventDao()
+						dao.delete(event)
+					})
+					.create()
+					.show()
+			true
 		}
 	}
 
