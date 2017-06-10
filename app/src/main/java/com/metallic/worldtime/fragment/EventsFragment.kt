@@ -3,23 +3,16 @@ package com.metallic.worldtime.fragment
 import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.BroadcastReceiver
-import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.os.Bundle
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.metallic.worldtime.EditEventActivity
 import com.metallic.worldtime.MainActivity
 import com.metallic.worldtime.R
-import com.metallic.worldtime.SelectTimeZonesActivity
-import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
 import com.metallic.worldtime.adapter.EventsRecyclerViewAdapter
-import com.metallic.worldtime.model.CurrentTimeTimeZonesViewModel
 import com.metallic.worldtime.model.EventsViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
 

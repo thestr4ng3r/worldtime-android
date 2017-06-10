@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
-import com.metallic.worldtime.dateFormatTime
-import com.metallic.worldtime.decimalFormatOffset
+import com.metallic.worldtime.DATE_FORMAT_TIME
+import com.metallic.worldtime.DECIMAL_FORMAT_OFFSET
 import com.metallic.worldtime.model.FavoriteTimeZone
 import kotlinx.android.synthetic.main.item_current_time_time_zone.view.*
 import org.joda.time.DateTimeZone
@@ -41,11 +41,11 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		val timeZoneOffset = timeZone.getOffset(Instant.now()) - localTimeZone.getOffset(Instant.now())
 
 		viewHolder.nameTextView.text = timeZone.id
-		viewHolder.timeTextView.text = dateFormatTime.print(LocalDateTime(Instant.now(), timeZone))
+		viewHolder.timeTextView.text = DATE_FORMAT_TIME.print(LocalDateTime(Instant.now(), timeZone))
 
 		val offsetHours = timeZoneOffset.toDouble() / (1000.0 * 60.0 * 60.0)
 		viewHolder.infoTextView.text = viewHolder.infoTextView.context.getString(R.string.hours_delta)
-				.format(decimalFormatOffset.format(offsetHours))
+				.format(DECIMAL_FORMAT_OFFSET.format(offsetHours))
 	}
 
 	class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

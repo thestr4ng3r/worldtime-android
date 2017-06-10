@@ -3,17 +3,22 @@ package com.metallic.worldtime.adapter
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
+import android.widget.TextView
 import com.metallic.worldtime.AppDatabase
 import com.metallic.worldtime.utils.inflate
 import com.metallic.worldtime.R
+import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.model.FavoriteTimeZone
-import kotlinx.android.synthetic.main.item_select_time_zone.view.*
+import kotlinx.android.synthetic.main.item_select_time_zone_check.view.*
+import kotlinx.android.synthetic.main.item_select_time_zone_single.view.*
 import org.joda.time.DateTimeZone
 
-class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>()
+class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>()
 {
 	var allTimeZones: List<DateTimeZone>? = null
 	var selectedTimeZones: Set<String>? = null
+	var onTimeZoneSelectedListener: OnTimeZoneSelectedListener? = null
 
 	override fun getItemCount(): Int
 	{
@@ -22,7 +27,13 @@ class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHo
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
 	{
-		val view = parent.inflate(R.layout.item_select_time_zone)
+		val layoutId = when(mode)
+		{
+			SelectTimeZonesActivity.Mode.EDIT_FAVORIES -> R.layout.item_select_time_zone_check
+			SelectTimeZonesActivity.Mode.SELECT_SINGLE -> R.layout.item_select_time_zone_single
+		}
+
+		val view = parent.inflate(layoutId)
 		return ViewHolder(view)
 	}
 
@@ -30,27 +41,49 @@ class SelectTimeZonesAdapter: RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHo
 	{
 		val timeZone = allTimeZones?.get(position) ?: return
 
-		viewHolder.checkBox.text = timeZone.id //timeZone.displayName
-		viewHolder.checkBox.setOnCheckedChangeListener(null)
-		viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone.id) ?: false
-		viewHolder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-			val dao = AppDatabase.getInstance(viewHolder.checkBox.context).currentTimeTimeZoneDao()
-			if(!isChecked)
-			{
-				dao.deleteByTimeZoneID(timeZone.id)
+		if(viewHolder.checkBox != null)
+		{
+			viewHolder.checkBox.text = timeZone.id //timeZone.displayName
+			viewHolder.checkBox.setOnCheckedChangeListener(null)
+			viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone.id) ?: false
+			viewHolder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+				val dao = AppDatabase.getInstance(viewHolder.checkBox.context).currentTimeTimeZoneDao()
+				if(!isChecked)
+				{
+					dao.deleteByTimeZoneID(timeZone.id)
+				}
+				else
+				{
+					val tz = FavoriteTimeZone()
+					tz.timeZoneID = timeZone.id
+					tz.sort = -1
+					dao.insert(tz)
+				}
 			}
-			else
-			{
-				val tz = FavoriteTimeZone()
-				tz.timeZoneID = timeZone.id
-				tz.sort = -1
-				dao.insert(tz)
+		}
+
+		if(viewHolder.textView != null)
+		{
+			viewHolder.textView.text = timeZone.id
+		}
+
+		if(mode == SelectTimeZonesActivity.Mode.SELECT_SINGLE)
+		{
+			viewHolder.frame.setOnClickListener {
+				onTimeZoneSelectedListener?.onTimeZoneSelected(timeZone)
 			}
 		}
 	}
 
 	class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 	{
-		val checkBox = itemView.check_box!!
+		val frame: View = itemView.findViewById(R.id.item_frame)
+		val checkBox: CheckBox? = itemView.check_box
+		val textView: TextView? = itemView.text_view
+	}
+
+	interface OnTimeZoneSelectedListener
+	{
+		fun onTimeZoneSelected(timeZone: DateTimeZone)
 	}
 }

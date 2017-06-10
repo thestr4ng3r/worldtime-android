@@ -6,7 +6,7 @@ import android.arch.lifecycle.LiveData
 import com.metallic.worldtime.AppDatabase
 
 
-class CurrentTimeTimeZonesViewModel(application: Application) : AndroidViewModel(application)
+class FavoriteTimeZonesViewModel(application: Application) : AndroidViewModel(application)
 {
 	var timeZones: LiveData<List<FavoriteTimeZone>>? = null
 
