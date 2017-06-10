@@ -5,6 +5,10 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.view.MenuItemCompat
+import android.support.v7.widget.SearchView
+import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import com.metallic.worldtime.adapter.SelectTimeZonesAdapter
 import com.metallic.worldtime.model.FavoriteTimeZone
@@ -13,8 +17,9 @@ import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_time_zones.*
 import org.joda.time.DateTimeZone
 
-class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdapter.OnTimeZoneSelectedListener
+class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdapter.OnTimeZoneSelectedListener, SearchView.OnQueryTextListener
 {
+
 	companion object
 	{
 		val MODE_EXTRA = "select_time_zones_mode"
@@ -30,6 +35,7 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 
 	private lateinit var mode: Mode
 	private lateinit var viewModel: FavoriteTimeZonesViewModel
+	private lateinit var allTimeZones: List<DateTimeZone>
 	private lateinit var adapter: SelectTimeZonesAdapter
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -56,10 +62,19 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 		}
 		viewModel.timeZones?.observe(this, observer)
 
-		val timeZones = DateTimeZone.getAvailableIDs()
+		allTimeZones = DateTimeZone.getAvailableIDs()
 				.sorted()
 				.map { id -> DateTimeZone.forID(id) }
-		adapter.allTimeZones = timeZones
+		adapter.allTimeZones = allTimeZones
+	}
+
+
+	override fun onCreateOptionsMenu(menu: Menu): Boolean
+	{
+		menuInflater.inflate(R.menu.activity_select_time_zones, menu)
+		val searchView = menu.findItem(R.id.action_search).actionView as SearchView
+		searchView.setOnQueryTextListener(this)
+		return true
 	}
 
 	override fun onOptionsItemSelected(item: MenuItem): Boolean
@@ -85,4 +100,27 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 			finish()
 		}
 	}
+
+
+	override fun onQueryTextChange(query: String): Boolean
+	{
+		val searchQuery = query.trim().toLowerCase()
+
+		if(searchQuery.isEmpty())
+		{
+			adapter.allTimeZones = allTimeZones
+		}
+		else
+		{
+			adapter.allTimeZones = allTimeZones.filter {
+				dateTimeZone -> dateTimeZone.id.toLowerCase().contains(searchQuery)
+			}
+		}
+
+		adapter.notifyDataSetChanged()
+
+		return true
+	}
+
+	override fun onQueryTextSubmit(query: String) = false
 }

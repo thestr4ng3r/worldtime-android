@@ -39,7 +39,7 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 
 	override fun onBindViewHolder(viewHolder: ViewHolder, position: Int)
 	{
-		val timeZone = allTimeZones?.get(position) ?: return
+		val timeZone = allTimeZones?.getOrNull(position) ?: return
 
 		if(viewHolder.checkBox != null)
 		{
