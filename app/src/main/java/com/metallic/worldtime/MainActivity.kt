@@ -2,9 +2,11 @@ package com.metallic.worldtime
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.view.MenuItem
+import com.metallic.worldtime.fragment.AboutFragment
 import com.metallic.worldtime.fragment.CurrentTimeFragment
 import com.metallic.worldtime.fragment.EventsFragment
 import com.metallic.worldtime.utils.LifecycleAppCompatActivity
@@ -12,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : LifecycleAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
-	enum class Section { CURRENT_TIME, EVENTS }
+	enum class Section { CURRENT_TIME, EVENTS, ABOUT }
 
 	lateinit var drawerLayout: DrawerLayout
 
@@ -44,6 +46,7 @@ class MainActivity : LifecycleAppCompatActivity(), NavigationView.OnNavigationIt
 		{
 			R.id.nav_current_time -> switchToSection(Section.CURRENT_TIME)
 			R.id.nav_events -> switchToSection(Section.EVENTS)
+			R.id.nav_about -> switchToSection(Section.ABOUT)
 		}
 
 		drawerLayout.closeDrawer(GravityCompat.START)
@@ -52,10 +55,11 @@ class MainActivity : LifecycleAppCompatActivity(), NavigationView.OnNavigationIt
 
 	private fun switchToSection(section: Section)
 	{
-		val fragment = when(section)
+		val fragment: Fragment = when(section)
 		{
 			MainActivity.Section.CURRENT_TIME -> CurrentTimeFragment()
 			MainActivity.Section.EVENTS -> EventsFragment()
+			MainActivity.Section.ABOUT -> AboutFragment()
 		}
 
 		val transaction = supportFragmentManager.beginTransaction()

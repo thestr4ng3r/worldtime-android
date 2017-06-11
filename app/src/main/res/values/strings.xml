@@ -12,6 +12,7 @@
 
     <string name="section_current_time">Current Time</string>
     <string name="section_events">Events</string>
+    <string name="section_about">About</string>
 
     <string name="title_select_time_zones">Time Zones</string>
     <string name="title_edit_event">Edit Event</string>
@@ -28,4 +29,5 @@
 
     <string name="action_cancel">Cancel</string>
     <string name="action_delete">Delete</string>
+
 </resources>
