@@ -3,7 +3,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
-        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="android:actionMenuTextColor">@color/toolbar_foreground</item>
     </style>
 
     <style name="AppTheme.Drawer">
@@ -12,11 +12,11 @@
     </style>
 
     <style name="ToolbarEditText" parent="AppTheme">
-        <item name="colorControlNormal">@android:color/white</item>
-        <item name="colorControlActivated">@android:color/white</item>
-        <item name="colorControlHighlight">@android:color/white</item>
+        <item name="colorControlNormal">@color/toolbar_foreground</item>
+        <item name="colorControlActivated">@color/toolbar_foreground</item>
+        <item name="colorControlHighlight">@color/toolbar_foreground</item>
         <item name="android:textColorHint">#b3ffffff</item>
-        <item name="android:editTextColor">@android:color/white</item>
+        <item name="android:editTextColor">@color/toolbar_foreground</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

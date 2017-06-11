@@ -12,12 +12,17 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import com.metallic.worldtime.DATE_FORMAT_TIME
 import com.metallic.worldtime.MainActivity
 import com.metallic.worldtime.R
 import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
 import com.metallic.worldtime.model.FavoriteTimeZonesViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
+import org.joda.time.DateTimeZone
+import org.joda.time.Instant
+import org.joda.time.LocalDateTime
 
 class CurrentTimeFragment: LifecycleFragment()
 {
@@ -25,6 +30,8 @@ class CurrentTimeFragment: LifecycleFragment()
 
 	private val adapter = CurrentTimeTimeZonesRecyclerViewAdapter()
 	private lateinit var drawerToggle: ActionBarDrawerToggle
+
+	private lateinit var localTimeTextView: TextView
 
 	override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View
 	{
@@ -40,6 +47,10 @@ class CurrentTimeFragment: LifecycleFragment()
 		mainActivity.title = getString(R.string.section_current_time)
 
 		view.recycler_view.adapter = adapter
+
+		view.local_name_text_view.text = DateTimeZone.getDefault().id
+		localTimeTextView = view.local_time_text_view
+		localTimeTextView.text = DATE_FORMAT_TIME.print(LocalDateTime.now())
 
 		view.fab.setOnClickListener {
 			val intent = Intent(activity, SelectTimeZonesActivity::class.java)
@@ -79,6 +90,7 @@ class CurrentTimeFragment: LifecycleFragment()
 
 	private fun updateTime()
 	{
+		localTimeTextView.text = DATE_FORMAT_TIME.print(LocalDateTime.now())
 		adapter.notifyDataSetChanged()
 	}
 

@@ -9,6 +9,8 @@
     <color name="text_secondary">#9000</color>
     <color name="text_secondary2">#5000</color>
 
+    <color name="toolbar_foreground">@android:color/white</color>
+
     <color name="seperator">#1000</color>
 
     <color name="material_red_800">#C62828</color>
