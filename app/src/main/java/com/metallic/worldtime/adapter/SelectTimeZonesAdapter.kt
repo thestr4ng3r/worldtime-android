@@ -16,7 +16,7 @@ import org.joda.time.DateTimeZone
 
 class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerView.Adapter<SelectTimeZonesAdapter.ViewHolder>()
 {
-	var allTimeZones: List<DateTimeZone>? = null
+	var allTimeZones: List<String>? = null
 	var selectedTimeZones: Set<String>? = null
 	var onTimeZoneSelectedListener: OnTimeZoneSelectedListener? = null
 
@@ -43,19 +43,19 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 
 		if(viewHolder.checkBox != null)
 		{
-			viewHolder.checkBox.text = timeZone.id //timeZone.displayName
+			viewHolder.checkBox.text = timeZone //timeZone.displayName
 			viewHolder.checkBox.setOnCheckedChangeListener(null)
-			viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone.id) ?: false
+			viewHolder.checkBox.isChecked = selectedTimeZones?.contains(timeZone) ?: false
 			viewHolder.checkBox.setOnCheckedChangeListener { _, isChecked ->
 				val dao = AppDatabase.getInstance(viewHolder.checkBox.context).favoriteTimeZoneDao()
 				if(!isChecked)
 				{
-					dao.deleteByTimeZoneID(timeZone.id)
+					dao.deleteByTimeZoneID(timeZone)
 				}
 				else
 				{
 					val tz = FavoriteTimeZone()
-					tz.timeZoneID = timeZone.id
+					tz.timeZoneID = timeZone
 					tz.sort = -1
 					dao.insert(tz)
 				}
@@ -64,7 +64,7 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 
 		if(viewHolder.textView != null)
 		{
-			viewHolder.textView.text = timeZone.id
+			viewHolder.textView.text = timeZone
 		}
 
 		if(mode == SelectTimeZonesActivity.Mode.SELECT_SINGLE)
@@ -84,6 +84,6 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 
 	interface OnTimeZoneSelectedListener
 	{
-		fun onTimeZoneSelected(timeZone: DateTimeZone)
+		fun onTimeZoneSelected(timeZoneId: String)
 	}
 }

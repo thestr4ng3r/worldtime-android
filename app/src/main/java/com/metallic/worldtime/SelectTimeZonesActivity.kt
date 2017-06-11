@@ -35,7 +35,7 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 
 	private lateinit var mode: Mode
 	private lateinit var viewModel: FavoriteTimeZonesViewModel
-	private lateinit var allTimeZones: List<DateTimeZone>
+	private lateinit var allTimeZones: List<String>
 	private lateinit var adapter: SelectTimeZonesAdapter
 
 	override fun onCreate(savedInstanceState: Bundle?)
@@ -64,7 +64,6 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 
 		allTimeZones = DateTimeZone.getAvailableIDs()
 				.sorted()
-				.map { id -> DateTimeZone.forID(id) }
 		adapter.allTimeZones = allTimeZones
 	}
 
@@ -90,12 +89,12 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 		return super.onOptionsItemSelected(item)
 	}
 
-	override fun onTimeZoneSelected(timeZone: DateTimeZone)
+	override fun onTimeZoneSelected(timeZoneId: String)
 	{
 		if(mode == Mode.SELECT_SINGLE)
 		{
 			val intent = intent
-			intent.putExtra(ZONE_ID_RESULT_EXTRA, timeZone.id)
+			intent.putExtra(ZONE_ID_RESULT_EXTRA, timeZoneId)
 			setResult(Activity.RESULT_OK, intent)
 			finish()
 		}
@@ -113,7 +112,7 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 		else
 		{
 			adapter.allTimeZones = allTimeZones.filter {
-				dateTimeZone -> dateTimeZone.id.toLowerCase().contains(searchQuery)
+				dateTimeZone -> dateTimeZone.toLowerCase().contains(searchQuery)
 			}
 		}
 
