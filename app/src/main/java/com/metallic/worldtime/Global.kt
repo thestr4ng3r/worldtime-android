@@ -1,5 +1,6 @@
 package com.metallic.worldtime
 
+import android.content.SharedPreferences
 import android.content.res.Resources
 import org.joda.time.format.DateTimeFormat
 import java.text.DecimalFormat
@@ -14,9 +15,14 @@ data class TimeZoneColor(val color: Int, val textColor: Int)
 fun colorsForTimeZone(resources: Resources, timeZoneId: String): TimeZoneColor
 {
 	val hash = timeZoneId.hashCode()
-	val colorIndex = (if(hash < 0) -hash else hash) % TIME_ZONE_COLORS_COUNT
+	val colorIndex = ((if(hash < 0) -hash else hash) + 8) % TIME_ZONE_COLORS_COUNT
 
 	val colorId = resources.getIntArray(R.array.time_zone_colors)[colorIndex]
 	val textColorId = resources.getIntArray(R.array.time_zone_colors_text)[colorIndex]
 	return TimeZoneColor(colorId, textColorId)
 }
+
+
+val PREFERENCES_NAME = "worldtime_prefs"
+
+val PREFERENCE_FIRST_LAUNCH = "first_launch"

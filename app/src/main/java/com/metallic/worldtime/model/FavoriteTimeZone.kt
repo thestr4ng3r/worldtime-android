@@ -9,6 +9,7 @@ private const val tableName = "favorite_time_zone"
 class FavoriteTimeZone
 {
 	@PrimaryKey
+	@ColumnInfo(name = "time_zone_id")
 	lateinit var timeZoneID: String
 
 	@ColumnInfo(name = "sort")
@@ -18,15 +19,18 @@ class FavoriteTimeZone
 @Dao
 interface FavoriteTimeZoneDao
 {
-	@Query("SELECT * FROM $tableName")
+	@Query("SELECT * FROM $tableName ORDER BY sort, time_zone_id")
 	fun getAll(): LiveData<List<FavoriteTimeZone>>
 
 	@Insert
 	fun insert(o: FavoriteTimeZone)
 
+	@Insert
+	fun insert(o: List<FavoriteTimeZone>)
+
 	@Delete
 	fun delete(o: FavoriteTimeZone)
 
-	@Query("DELETE FROM $tableName WHERE timeZoneId = :arg0")
+	@Query("DELETE FROM $tableName WHERE time_zone_id = :arg0")
 	fun deleteByTimeZoneID(id: String)
 }
