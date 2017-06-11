@@ -53,7 +53,7 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		viewHolder.itemLayout.setOnLongClickListener {
 			val context = viewHolder.itemLayout.context
 			AlertDialog.Builder(context)
-					.setMessage(context.getString(R.string.message_question_delete_event).format(timeZone.id))
+					.setMessage(context.getString(R.string.message_question_delete_favorite_timezone).format(timeZone.id))
 					.setNegativeButton(R.string.action_cancel, { _: DialogInterface, _: Int -> })
 					.setPositiveButton(R.string.action_delete, { _: DialogInterface, _: Int ->
 						val dao = AppDatabase.getInstance(context).favoriteTimeZoneDao()

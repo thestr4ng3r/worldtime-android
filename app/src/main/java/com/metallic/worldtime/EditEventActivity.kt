@@ -188,6 +188,9 @@ class EditEventActivity: LifecycleAppCompatActivity()
 
 	private fun save()
 	{
+		val timeZone = DateTimeZone.forID(event.timeZoneId)
+		event.date = currentSelectedDate.toDateTime(timeZone).millis
+
 		val dao = AppDatabase.getInstance(this).eventDao()
 		if(newEvent)
 			dao.insert(event)
