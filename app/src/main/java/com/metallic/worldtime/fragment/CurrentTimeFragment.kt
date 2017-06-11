@@ -12,15 +12,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import com.metallic.worldtime.MainActivity
 import com.metallic.worldtime.R
 import com.metallic.worldtime.SelectTimeZonesActivity
 import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
-import com.metallic.worldtime.DATE_FORMAT_TIME
 import com.metallic.worldtime.model.FavoriteTimeZonesViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
-import org.joda.time.LocalDateTime
 
 class CurrentTimeFragment: LifecycleFragment()
 {
