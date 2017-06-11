@@ -41,11 +41,13 @@ class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.
 		viewHolder.nameTextView.text = DateTimeZone.getDefault().id
 		val localTime = LocalDateTime(event.date, DateTimeZone.getDefault())
 		viewHolder.timeTextView.text = DATE_FORMAT_TIME.print(localTime)
+		viewHolder.dateTextView.text = DATE_FORMAT_DATE.print(localTime)
 
 		val timeZone = DateTimeZone.forID(event.timeZoneId)
 		viewHolder.name2TextView.text = timeZone.id
 		val remoteTime = LocalDateTime(event.date, timeZone)
 		viewHolder.time2TextView.text = DATE_FORMAT_TIME.print(remoteTime)
+		viewHolder.date2TextView.text = DATE_FORMAT_DATE.print(remoteTime)
 
 		viewHolder.eventTitleTextView.text = event.title
 
@@ -54,8 +56,10 @@ class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.
 		viewHolder.headerBackgroundView.setBackgroundColor(timeZoneColor.color)
 		viewHolder.nameTextView.setTextColor(timeZoneColor.textColor)
 		viewHolder.timeTextView.setTextColor(timeZoneColor.textColor)
+		viewHolder.dateTextView.setTextColor(timeZoneColor.textColor)
 		viewHolder.name2TextView.setTextColor(timeZoneColor.textColor)
 		viewHolder.time2TextView.setTextColor(timeZoneColor.textColor)
+		viewHolder.date2TextView.setTextColor(timeZoneColor.textColor)
 
 		viewHolder.itemLayout.setOnClickListener {
 			val context = viewHolder.itemLayout.context
@@ -83,9 +87,11 @@ class EventsRecyclerViewAdapter: RecyclerView.Adapter<EventsRecyclerViewAdapter.
 	{
 		val nameTextView = itemView.name_text_view!!
 		val timeTextView = itemView.time_text_view!!
+		val dateTextView = itemView.date_text_view!!
 
 		val name2TextView = itemView.name2_text_view!!
 		val time2TextView = itemView.time2_text_view!!
+		val date2TextView = itemView.date2_text_view!!
 
 		val eventTitleTextView = itemView.event_title_text_view!!
 

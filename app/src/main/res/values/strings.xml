@@ -5,6 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="local_time">Local Time</string>
+    <string name="yesterday">Yesterday</string>
+    <string name="tomorrow">Tomorrow</string>
 
     <string name="action_settings">Settings</string>
 

@@ -4,7 +4,7 @@ import android.content.res.Resources
 import org.joda.time.format.DateTimeFormat
 import java.text.DecimalFormat
 
-val DATE_FORMAT_TIME = DateTimeFormat.forPattern("HH:mm")
+val DATE_FORMAT_TIME = DateTimeFormat.shortTime()
 val DATE_FORMAT_DATE = DateTimeFormat.fullDate()
 
 val DECIMAL_FORMAT_OFFSET = DecimalFormat("+#0.#;-#0.#")

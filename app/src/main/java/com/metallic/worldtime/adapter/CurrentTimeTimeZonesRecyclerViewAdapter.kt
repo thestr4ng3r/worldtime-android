@@ -12,9 +12,7 @@ import com.metallic.worldtime.DATE_FORMAT_TIME
 import com.metallic.worldtime.DECIMAL_FORMAT_OFFSET
 import com.metallic.worldtime.model.FavoriteTimeZone
 import kotlinx.android.synthetic.main.item_current_time_time_zone.view.*
-import org.joda.time.DateTimeZone
-import org.joda.time.Instant
-import org.joda.time.LocalDateTime
+import org.joda.time.*
 
 class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeTimeZonesRecyclerViewAdapter.ViewHolder>()
 {
@@ -43,8 +41,28 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		val localTimeZone = DateTimeZone.getDefault()
 		val timeZoneOffset = timeZone.getOffset(Instant.now()) - localTimeZone.getOffset(Instant.now())
 
+		val remoteDateTime = LocalDateTime(Instant.now(), timeZone)
+		val remoteDate = remoteDateTime.toLocalDate()
+		val localDate = LocalDate.now()
+
 		viewHolder.nameTextView.text = timeZone.id
-		viewHolder.timeTextView.text = DATE_FORMAT_TIME.print(LocalDateTime(Instant.now(), timeZone))
+		viewHolder.timeTextView.text = DATE_FORMAT_TIME.print(remoteDateTime)
+
+		val daysDelta = Period(localDate, remoteDate).days
+		if(daysDelta == -1)
+		{
+			viewHolder.dayTextView.setText(R.string.yesterday)
+			viewHolder.dayTextView.visibility = View.VISIBLE
+		}
+		else if(daysDelta == 1)
+		{
+			viewHolder.dayTextView.setText(R.string.tomorrow)
+			viewHolder.dayTextView.visibility = View.VISIBLE
+		}
+		else
+		{
+			viewHolder.dayTextView.visibility = View.GONE
+		}
 
 		val offsetHours = timeZoneOffset.toDouble() / (1000.0 * 60.0 * 60.0)
 		viewHolder.infoTextView.text = viewHolder.infoTextView.context.getString(R.string.hours_delta)
@@ -70,6 +88,7 @@ class CurrentTimeTimeZonesRecyclerViewAdapter: RecyclerView.Adapter<CurrentTimeT
 		val nameTextView = itemView.name_text_view!!
 		val timeTextView = itemView.time_text_view!!
 		val infoTextView = itemView.info_text_view!!
+		val dayTextView = itemView.day_text_view!!
 		val itemLayout = itemView.item_layout!!
 	}
 }

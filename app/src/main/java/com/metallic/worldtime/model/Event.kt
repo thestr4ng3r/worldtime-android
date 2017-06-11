@@ -25,7 +25,7 @@ class Event
 @Dao
 interface EventDao
 {
-	@Query("SELECT * FROM $tableName")
+	@Query("SELECT * FROM $tableName ORDER BY date DESC")
 	fun getAll(): LiveData<List<Event>>
 
 	@Query("SELECT * FROM $tableName WHERE id = :arg0")

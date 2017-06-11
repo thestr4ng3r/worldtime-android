@@ -16,8 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
-
         <View android:id="@+id/header_background_view"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -48,8 +46,17 @@
             android:textSize="48sp"
             android:textColor="@android:color/white"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/date_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/time_text_view"
+            app:layout_constraintTop_toBottomOf="@id/time_text_view"
+            tools:text="Sa, 01.01.2042"
+            android:textSize="14sp"
+            android:textColor="@android:color/white" />
 
         <TextView
             android:id="@+id/name_text_view"
@@ -57,7 +64,7 @@
             android:layout_height="wrap_content"
             tools:text="Europe/Munich"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/time_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/date_text_view"
             app:layout_constraintStart_toStartOf="@+id/time_text_view"
             android:textSize="16sp"/>
 
@@ -75,12 +82,22 @@
             android:layout_marginBottom="8dp"/>
 
         <TextView
+            android:id="@+id/date2_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@+id/time2_text_view"
+            app:layout_constraintTop_toBottomOf="@id/time2_text_view"
+            tools:text="Sa, 01.01.2042"
+            android:textSize="14sp"
+            android:textColor="@android:color/white" />
+
+        <TextView
             android:id="@+id/name2_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Europe/Munich"
             android:textColor="@android:color/white"
-            app:layout_constraintTop_toBottomOf="@+id/time2_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/date2_text_view"
             app:layout_constraintEnd_toEndOf="@+id/time2_text_view"
             android:textSize="16sp"/>
 
