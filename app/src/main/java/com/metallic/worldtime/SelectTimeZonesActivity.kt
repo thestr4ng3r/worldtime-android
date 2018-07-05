@@ -19,7 +19,6 @@ import org.joda.time.DateTimeZone
 
 class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdapter.OnTimeZoneSelectedListener, SearchView.OnQueryTextListener
 {
-
 	companion object
 	{
 		val MODE_EXTRA = "select_time_zones_mode"
@@ -55,7 +54,7 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 		viewModel = ViewModelProviders.of(this).get(FavoriteTimeZonesViewModel::class.java)
 		var observer: Observer<List<FavoriteTimeZone>>? = null
 		observer = Observer<List<FavoriteTimeZone>> { items ->
-			val selectedIds = items?.map { a -> a.timeZoneID }?.toSet()
+			val selectedIds = items?.map { a -> a.timeZoneID!! }?.toSet()
 			adapter.selectedTimeZones = selectedIds
 			adapter.notifyDataSetChanged()
 			viewModel.timeZones?.removeObserver(observer)

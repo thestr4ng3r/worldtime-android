@@ -10,7 +10,7 @@ class FavoriteTimeZone
 {
 	@PrimaryKey
 	@ColumnInfo(name = "time_zone_id")
-	lateinit var timeZoneID: String
+	var timeZoneID: String? = null
 
 	@ColumnInfo(name = "sort")
 	var sort: Int = 0
