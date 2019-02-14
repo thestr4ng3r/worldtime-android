@@ -21,7 +21,6 @@ import com.metallic.worldtime.adapter.CurrentTimeTimeZonesRecyclerViewAdapter
 import com.metallic.worldtime.model.FavoriteTimeZonesViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
 import org.joda.time.DateTimeZone
-import org.joda.time.Instant
 import org.joda.time.LocalDateTime
 
 class CurrentTimeFragment: Fragment()
@@ -79,13 +78,13 @@ class CurrentTimeFragment: Fragment()
 	{
 		super.onResume()
 		updateTime()
-		activity.registerReceiver(timeBroadcastReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
+		activity?.registerReceiver(timeBroadcastReceiver, IntentFilter(Intent.ACTION_TIME_TICK))
 	}
 
 	override fun onPause()
 	{
 		super.onPause()
-		activity.unregisterReceiver(timeBroadcastReceiver)
+		activity?.unregisterReceiver(timeBroadcastReceiver)
 	}
 
 	private fun updateTime()

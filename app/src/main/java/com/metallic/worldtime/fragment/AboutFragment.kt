@@ -32,9 +32,12 @@ class AboutFragment: Fragment()
 		drawerToggle.syncState()
 		mainActivity.title = getString(R.string.section_about)
 
-		val reader = BufferedReader(InputStreamReader(activity.assets.open("about.html")))
-		val html = reader.readText()
-		reader.close()
+		val html = activity?.let {
+			val reader = BufferedReader(InputStreamReader(it.assets.open("about.html")))
+			val r = reader.readText()
+			reader.close()
+			r
+		} ?: ""
 
 		view.text_view.movementMethod = LinkMovementMethod.getInstance()
 
