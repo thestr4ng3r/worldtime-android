@@ -38,7 +38,7 @@ class EventsFragment: Fragment()
 
 		view.recycler_view.adapter = adapter
 
-		view.fab.setOnClickListener { view ->
+		view.fab.setOnClickListener {
 			val intent = Intent(activity, EditEventActivity::class.java)
 			startActivity(intent)
 		}

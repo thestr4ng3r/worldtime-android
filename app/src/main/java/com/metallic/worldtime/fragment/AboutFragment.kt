@@ -41,7 +41,10 @@ class AboutFragment: Fragment()
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
 			view.text_view.text = Html.fromHtml(html, Html.FROM_HTML_MODE_LEGACY)
 		else
+		{
+			@Suppress("DEPRECATION")
 			view.text_view.text = Html.fromHtml(html)
+		}
 
 		return view
 	}
