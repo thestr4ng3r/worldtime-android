@@ -1,10 +1,10 @@
 package com.metallic.worldtime.fragment
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +16,7 @@ import com.metallic.worldtime.adapter.EventsRecyclerViewAdapter
 import com.metallic.worldtime.model.EventsViewModel
 import kotlinx.android.synthetic.main.fragment_current_time.view.*
 
-class EventsFragment: LifecycleFragment()
+class EventsFragment: Fragment()
 {
 	private var viewModel: EventsViewModel? = null
 

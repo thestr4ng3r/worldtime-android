@@ -3,6 +3,7 @@ package com.metallic.worldtime
 import android.app.*
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.text.format.DateFormat
@@ -11,13 +12,12 @@ import android.view.MenuItem
 import android.widget.DatePicker
 import android.widget.TimePicker
 import com.metallic.worldtime.model.Event
-import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_edit_event.*
 import org.joda.time.DateTimeZone
 import org.joda.time.Instant
 import org.joda.time.LocalDateTime
 
-class EditEventActivity: LifecycleAppCompatActivity()
+class EditEventActivity: AppCompatActivity()
 {
 	companion object
 	{
@@ -47,12 +47,11 @@ class EditEventActivity: LifecycleAppCompatActivity()
 		}
 		else
 		{
-			event = Event()
+			event = Event(
+					timeZoneId = DateTimeZone.getDefault().id,
+					date = Instant.now().millis,
+					title = "")
 			newEvent = true
-
-			event.date = Instant.now().millis
-			event.timeZoneId = DateTimeZone.getDefault().id
-			event.title = ""
 		}
 
 		currentSelectedDate = LocalDateTime(event.date, DateTimeZone.forID(event.timeZoneId))

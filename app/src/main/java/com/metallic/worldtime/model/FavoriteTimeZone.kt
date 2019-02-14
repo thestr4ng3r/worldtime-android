@@ -6,15 +6,15 @@ import android.arch.persistence.room.*
 private const val tableName = "favorite_time_zone"
 
 @Entity(tableName = tableName)
-class FavoriteTimeZone
-{
+data class FavoriteTimeZone
+(
 	@PrimaryKey
 	@ColumnInfo(name = "time_zone_id")
-	var timeZoneID: String? = null
+	var timeZoneID: String,
 
 	@ColumnInfo(name = "sort")
-	var sort: Int = 0
-}
+	var sort: Int = -1
+)
 
 @Dao
 interface FavoriteTimeZoneDao
@@ -31,6 +31,6 @@ interface FavoriteTimeZoneDao
 	@Delete
 	fun delete(o: FavoriteTimeZone)
 
-	@Query("DELETE FROM $tableName WHERE time_zone_id = :arg0")
+	@Query("DELETE FROM $tableName WHERE time_zone_id = :id")
 	fun deleteByTimeZoneID(id: String)
 }

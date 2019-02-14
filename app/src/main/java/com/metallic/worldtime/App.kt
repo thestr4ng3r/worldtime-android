@@ -21,9 +21,7 @@ class App: Application()
 
 			val favorites = arrayOf("America/Los_Angeles", "America/New_York", "Asia/Tokyo", "Australia/Sydney", "Europe/London")
 					.map {
-						val item = FavoriteTimeZone()
-						item.timeZoneID = it
-						item
+						FavoriteTimeZone(it)
 					}
 
 			dao.insert(favorites)

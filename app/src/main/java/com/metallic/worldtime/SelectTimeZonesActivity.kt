@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.view.MenuItemCompat
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.util.Log
 import android.view.Menu
@@ -13,11 +14,10 @@ import android.view.MenuItem
 import com.metallic.worldtime.adapter.SelectTimeZonesAdapter
 import com.metallic.worldtime.model.FavoriteTimeZone
 import com.metallic.worldtime.model.FavoriteTimeZonesViewModel
-import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_select_time_zones.*
 import org.joda.time.DateTimeZone
 
-class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdapter.OnTimeZoneSelectedListener, SearchView.OnQueryTextListener
+class SelectTimeZonesActivity: AppCompatActivity(), SelectTimeZonesAdapter.OnTimeZoneSelectedListener, SearchView.OnQueryTextListener
 {
 	companion object
 	{
@@ -53,11 +53,11 @@ class SelectTimeZonesActivity: LifecycleAppCompatActivity(), SelectTimeZonesAdap
 
 		viewModel = ViewModelProviders.of(this).get(FavoriteTimeZonesViewModel::class.java)
 		var observer: Observer<List<FavoriteTimeZone>>? = null
-		observer = Observer<List<FavoriteTimeZone>> { items ->
-			val selectedIds = items?.map { a -> a.timeZoneID!! }?.toSet()
+		observer = Observer { items ->
+			val selectedIds = items?.map { a -> a.timeZoneID }?.toSet()
 			adapter.selectedTimeZones = selectedIds
 			adapter.notifyDataSetChanged()
-			viewModel.timeZones?.removeObserver(observer)
+			viewModel.timeZones?.removeObserver(observer!!)
 		}
 		viewModel.timeZones?.observe(this, observer)
 

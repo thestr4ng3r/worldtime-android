@@ -1,6 +1,5 @@
 package com.metallic.worldtime.fragment
 
-import android.arch.lifecycle.LifecycleFragment
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.content.BroadcastReceiver
@@ -8,6 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v7.app.ActionBarDrawerToggle
 import android.view.LayoutInflater
 import android.view.View
@@ -24,7 +24,7 @@ import org.joda.time.DateTimeZone
 import org.joda.time.Instant
 import org.joda.time.LocalDateTime
 
-class CurrentTimeFragment: LifecycleFragment()
+class CurrentTimeFragment: Fragment()
 {
 	private var viewModel: FavoriteTimeZonesViewModel? = null
 

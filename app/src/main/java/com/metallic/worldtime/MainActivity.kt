@@ -5,14 +5,14 @@ import android.support.design.widget.NavigationView
 import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.metallic.worldtime.fragment.AboutFragment
 import com.metallic.worldtime.fragment.CurrentTimeFragment
 import com.metallic.worldtime.fragment.EventsFragment
-import com.metallic.worldtime.utils.LifecycleAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : LifecycleAppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener
 {
 	enum class Section { CURRENT_TIME, EVENTS, ABOUT }
 

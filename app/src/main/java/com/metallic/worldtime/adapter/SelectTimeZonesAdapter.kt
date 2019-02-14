@@ -54,9 +54,7 @@ class SelectTimeZonesAdapter(val mode: SelectTimeZonesActivity.Mode): RecyclerVi
 				}
 				else
 				{
-					val tz = FavoriteTimeZone()
-					tz.timeZoneID = timeZone
-					tz.sort = -1
+					val tz = FavoriteTimeZone(timeZone)
 					dao.insert(tz)
 				}
 			}

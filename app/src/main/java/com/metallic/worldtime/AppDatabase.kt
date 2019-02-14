@@ -12,7 +12,7 @@ import com.metallic.worldtime.model.FavoriteTimeZoneDao
 import com.metallic.worldtime.model.Event
 import com.metallic.worldtime.model.EventDao
 
-@Database(entities = arrayOf(FavoriteTimeZone::class, Event::class), version = 7)
+@Database(entities = arrayOf(FavoriteTimeZone::class, Event::class), version = 8)
 abstract class AppDatabase: RoomDatabase()
 {
 	abstract fun favoriteTimeZoneDao(): FavoriteTimeZoneDao
@@ -24,18 +24,14 @@ abstract class AppDatabase: RoomDatabase()
 		fun getInstance(context: Context): AppDatabase
 		{
 			var instance = instance
-			if(instance == null)
-			{
-				instance = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app-database")
-						.addMigrations(MIGRATION_6_7)
-						.allowMainThreadQueries()
-						.build()
-				this.instance = instance
-			}
-			return instance!!
+			if(instance != null)
+				return instance
+			instance = Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, "app-database")
+					.fallbackToDestructiveMigrationFrom(6, 7)
+					.allowMainThreadQueries()
+					.build()
+			this.instance = instance
+			return instance
 		}
-
-
-		private val MIGRATION_6_7 = object : Migration(6, 7) { override fun migrate(database: SupportSQLiteDatabase?) { } }
 	}
 }

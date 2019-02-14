@@ -6,21 +6,21 @@ import android.arch.persistence.room.*
 private const val tableName = "event"
 
 @Entity(tableName = tableName)
-class Event
-{
+data class Event
+(
 	@PrimaryKey(autoGenerate = true)
 	@ColumnInfo(name = "id")
-	var id: Long = 0
+	var id: Long = 0,
 
 	@ColumnInfo(name = "time_zone")
-	lateinit var timeZoneId: String
+	var timeZoneId: String,
 
 	@ColumnInfo(name = "date")
-	var date: Long = 0
+	var date: Long,
 
 	@ColumnInfo(name = "title")
-	lateinit var title: String
-}
+	var title: String
+)
 
 @Dao
 interface EventDao
@@ -28,7 +28,7 @@ interface EventDao
 	@Query("SELECT * FROM $tableName ORDER BY date DESC")
 	fun getAll(): LiveData<List<Event>>
 
-	@Query("SELECT * FROM $tableName WHERE id = :arg0")
+	@Query("SELECT * FROM $tableName WHERE id = :id")
 	fun getById(id: Long): Event
 
 	@Insert
